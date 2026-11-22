@@ -26,7 +26,7 @@ function artistName(id){return artists.find(a=>a.id===id)?.stage_name||'Artist'}
 async function load(){
 $('dataStatus').textContent='Syncing records…';
 const [a,t,p,pl]=await Promise.all([
-sb.from('studio_artists').select('id,stage_name,country,city,artist_type,created_at').order('created_at',{ascending:false}).limit(1000),
+sb.from('studio_artists').select('id,owner_user_id,stage_name,country,city,artist_type,created_at').order('created_at',{ascending:false}).limit(1000),
 sb.from('studio_tracks').select('id,title,artist_id,status,submitted_at,created_at,review_note').order('created_at',{ascending:false}).limit(2000),
 sb.from('studio_promotion_requests').select('id,artist_id,track_id,request_note,status,admin_price_minor,currency,admin_note,requested_at').order('requested_at',{ascending:false}).limit(1000),
 sb.from('studio_monetization_plans').select('id,title,price_minor,currency,billing_interval,enabled,gateway_ready').order('created_at',{ascending:false}).limit(300)
